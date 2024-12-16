@@ -1,9 +1,11 @@
+import Navbar from "../Components/Navbar/Navbar";
+import { homeNavItems } from "../data/NavItems";
 
 
 const Home = () => {
     return (
         <div>
-            This is home page
+            <Navbar navItems={homeNavItems}/>
         </div>
     );
 };

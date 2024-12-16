@@ -13,16 +13,16 @@ const Services = () => {
     <div id="Services" className="px-8 lg:px-0">
       <div className="text-center">
         <p className="text-[#ff3811] text-xl font-bold ">Service</p>
-        <h2 className="text-[#151515] text-[45px] font-bold ">
+        <h2 className="text-[#151515] text-[30px] md:text-[45px] font-bold ">
           Our Service Area
         </h2>
-        <p className="max-w-[717px] mx-auto text-neutral-500 text-base font-normal capitalize leading-[30px]">
+        <p className="max-w-[717px] mx-auto text-neutral-500 text-[14px] md:text-base font-normal capitalize leading-[30px]">
           the majority have suffered alteration in some form, by injected
           humour, or randomised words which don&lsquo;t look even slightly
           believable.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-6">
         {
             services?.map(service => <ServiceCard key={service._id} service={service}/>)
         }

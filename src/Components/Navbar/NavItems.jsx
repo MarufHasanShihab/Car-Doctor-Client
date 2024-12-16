@@ -6,7 +6,7 @@ const NavItems = ({ navItems }) => {
     <ul className="hidden lg:flex items-center gap-10">
       {navItems?.map((item) => (
         <li key={item.id} className="cursor-pointer text-[#444444] text-lg font-semibold">
-          <Link to={item?.to} smooth={true} offset={0} duration={500}>
+          <Link to={item?.to} smooth={true} offset={-40} duration={500}>
             {item?.name}
           </Link>
         </li>

@@ -29,7 +29,7 @@ const BannerSlider = () => {
         {banners.map((img, index) => (
           <SwiperSlide key={index}>
             <div
-              className="relative h-[500px] bg-cover bg-center bg-no-repeat text-white rounded-[10px]"
+              className="relative h-[500px] 2xl:h-[700px] bg-cover bg-center bg-no-repeat text-white rounded-[10px]"
               style={{
                 backgroundImage: `url('${img}')`,
               }}>

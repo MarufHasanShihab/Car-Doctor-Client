@@ -27,6 +27,8 @@ const Login = () => {
                 name="email"
                 id="email"
                 className="p-2 bg-white rounded-md border border-gray-400 outline-none"
+                placeholder="Email"
+                required
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -36,6 +38,8 @@ const Login = () => {
                 name="password"
                 id="password"
                 className="p-2 bg-white rounded-md border border-gray-400 outline-none"
+                placeholder="Password"
+                required
               />
             </div>
             <button className="bg-[#FF3811] w-full py-2 px-4 text-white font-normal rounded-lg">

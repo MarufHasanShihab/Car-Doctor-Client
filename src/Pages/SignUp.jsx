@@ -2,8 +2,22 @@ import { Link } from "react-router-dom";
 import login from "../assets/images/login/login.svg";
 import Navbar from "../Components/Navbar/Navbar";
 import { loginNavItems } from "../data/NavItems";
+import useAuth from './../hooks/useAuth';
 
 const SignUp = () => {
+  const {createUser,user} = useAuth();
+  const handleSignUp = e =>{
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    createUser(email,password)
+    .then(user =>{
+      console.log(user.user)
+    })
+    
+  }
+  console.log(user)
   return (
     <div>
       <Navbar navItems={loginNavItems} />
@@ -19,7 +33,7 @@ const SignUp = () => {
           <h2 className="text-center text-[#444444] text-[40px] font-semibold">
             Sign Up
           </h2>
-          <form className="p-6 space-y-4">
+          <form onSubmit={handleSignUp} className="p-6 space-y-4">
             <div className="flex flex-col gap-2">
               <label>Name</label>
               <input
@@ -27,6 +41,8 @@ const SignUp = () => {
                 name="name"
                 id="name"
                 className="p-2 bg-white rounded-md border border-gray-400 outline-none"
+                placeholder="Name"
+                required
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -36,6 +52,8 @@ const SignUp = () => {
                 name="email"
                 id="email"
                 className="p-2 bg-white rounded-md border border-gray-400 outline-none"
+                placeholder="Email"
+                required
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -45,6 +63,8 @@ const SignUp = () => {
                 name="password"
                 id="password"
                 className="p-2 bg-white rounded-md border border-gray-400 outline-none"
+                placeholder="Password"
+                required
               />
             </div>
             <button className="bg-[#FF3811] w-full py-2 px-4 text-white font-normal rounded-lg">

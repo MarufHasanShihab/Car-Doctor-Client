@@ -14,7 +14,7 @@ const Navbar = ({navItems}) => {
             {/* nav right */}
             <div className="flex items-center gap-6">
                 <div className="flex gap-6 text-2xl">
-                <Link><IoPerson /></Link>
+                <Link to="/login"><IoPerson /></Link>
                 <Link><HiOutlineShoppingBag /></Link>
                 <IoSearchOutline/>
                 </div>

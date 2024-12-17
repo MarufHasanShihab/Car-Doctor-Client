@@ -25,4 +25,20 @@ export const homeNavItems = [
         to:"Contact",
         name: "Contact"
     },
+];
+
+
+export const loginNavItems = [
+    {
+        id:1,
+        name: "Order"
+    },
+    {
+        id:2,
+        name: "Order Review  "
+    },
+    {
+        id:3,
+        name: "Manage Inventory  "
+    }
 ]

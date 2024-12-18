@@ -2,8 +2,23 @@ import { Link } from "react-router-dom";
 import login from "../assets/images/login/login.svg";
 import Navbar from "../Components/Navbar/Navbar";
 import { loginNavItems } from "../data/NavItems";
+import useAuth from './../hooks/useAuth';
 
 const Login = () => {
+  const {loginUser} = useAuth();
+  const handleUserLogin = e =>{
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    loginUser(email,password)
+    .then(user => {
+      console.log(user.user)
+    })
+    .catch(error => {
+      console.log(error.message.split('/')[1].split('-').join(' '));
+    })
+  }
   return (
     <div>
         <Navbar navItems={loginNavItems}/>
@@ -19,7 +34,7 @@ const Login = () => {
           <h2 className="text-center text-[#444444] text-[40px] font-semibold">
             Login
           </h2>
-          <form className="p-6 space-y-4">
+          <form onSubmit={handleUserLogin} className="p-6 space-y-4">
             <div className="flex flex-col gap-2">
               <label>Email</label>
               <input
@@ -43,7 +58,7 @@ const Login = () => {
               />
             </div>
             <button className="bg-[#FF3811] w-full py-2 px-4 text-white font-normal rounded-lg">
-              Sign Up
+              Login
             </button>
           </form>
           <h2 className="text-center text-neutral-500">

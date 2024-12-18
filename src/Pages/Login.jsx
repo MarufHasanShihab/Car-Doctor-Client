@@ -3,6 +3,7 @@ import login from "../assets/images/login/login.svg";
 import Navbar from "../Components/Navbar/Navbar";
 import { loginNavItems } from "../data/NavItems";
 import useAuth from './../hooks/useAuth';
+import { toast } from "react-toastify";
 
 const Login = () => {
   const {loginUser} = useAuth();
@@ -13,10 +14,13 @@ const Login = () => {
     const password = form.password.value;
     loginUser(email,password)
     .then(user => {
-      console.log(user.user)
+      if(user){
+        toast.success("User Login Sucessfully!");
+        return
+      }
     })
     .catch(error => {
-      console.log(error.message.split('/')[1].split('-').join(' '));
+      toast.error(error.message.split('/')[1].split('-').join(' '));
     })
   }
   return (

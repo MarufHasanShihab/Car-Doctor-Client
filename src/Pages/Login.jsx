@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import login from "../assets/images/login/login.svg";
 import Navbar from "../Components/Navbar/Navbar";
 import { loginNavItems } from "../data/NavItems";
@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 
 const Login = () => {
   const {loginUser} = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleUserLogin = e =>{
     e.preventDefault();
     const form = e.target;
@@ -15,6 +17,7 @@ const Login = () => {
     loginUser(email,password)
     .then(user => {
       if(user){
+        navigate(location?.state ? location.state : "/");
         toast.success("User Login Sucessfully!");
         return
       }

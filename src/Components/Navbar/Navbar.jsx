@@ -33,7 +33,7 @@ const Navbar = ({ navItems }) => {
               </Link>
             )}
           </div>
-          <Link>
+          <Link to="/bookings">
             <HiOutlineShoppingBag />
           </Link>
           <IoSearchOutline />

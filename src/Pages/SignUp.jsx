@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import login from "../assets/images/login/login.svg";
 import Navbar from "../Components/Navbar/Navbar";
 import { loginNavItems } from "../data/NavItems";
@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 
 const SignUp = () => {
   const {createUser,user} = useAuth();
+  const navigate = useNavigate();
   const handleSignUp = e =>{
     e.preventDefault();
     const form = e.target;
@@ -16,6 +17,7 @@ const SignUp = () => {
     .then(user =>{
       if(user){
         toast.success("User Created Sucessfully!")
+        navigate("/")
         return
       }
     })

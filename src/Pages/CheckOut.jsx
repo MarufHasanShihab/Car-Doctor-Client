@@ -11,6 +11,7 @@ const CheckOut = () => {
   const service = useLoaderData();
   const { _id, title, price, img } = service || {};
   const { user } = useAuth();
+  const currentDate = new Date();
   const handleOrderConfirm = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -29,7 +30,8 @@ const CheckOut = () => {
       title,
       price,
       img,
-      loginEmail:user?.email
+      loginEmail:user?.email,
+      date:currentDate.toISOString().split('T')[0]
     };
     fetch('http://localhost:5000/orders',{
       method:"POST",

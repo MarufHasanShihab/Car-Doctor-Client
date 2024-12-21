@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import Navbar from "../Components/Navbar/Navbar";
 import banner from "../assets/images/banner/booking_banner.png";
 import { IoMdClose } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const Bookings = () => {
   const { user } = useAuth();
@@ -13,6 +14,20 @@ const Bookings = () => {
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, [url,user]);
+
+  const handleBookingDelete = id =>{
+    fetch(`http://localhost:5000/orders/${id}`,{
+      method:"DELETE"
+    })
+    .then(res =>res.json())
+    .then(data => {
+      if(data.deletedCount > 0){
+        const remaning = orders.filter(order => order._id !== id);
+        setOrders(remaning);
+        toast.success('Order Deleted Sucessfully!');
+      }
+    })
+  }
   return (
     <div>
       <Navbar />
@@ -31,7 +46,7 @@ const Bookings = () => {
           orders.length > 1? ( orders?.map((order) => (
             <div key={order._id} className="flex flex-col md:flex-row justify-between md:items-center gap-6 md:gap-0 p-5 lg:p-0">
               <div className="flex items-center gap-3">
-                <button className="w-[40px] h-[40px] bg-[#444444] text-white text-[18px] rounded-full"><IoMdClose className="mx-auto"/></button>
+                <button onClick={()=>handleBookingDelete(order?._id)} className="w-[40px] h-[40px] bg-[#444444] text-white text-[18px] rounded-full"><IoMdClose className="mx-auto"/></button>
                 <img src={order?.img} alt="order-img" className="w-[200px] rounded-lg" />
                 <p>{order?.title}</p>
               </div>

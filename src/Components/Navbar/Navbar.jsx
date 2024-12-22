@@ -8,7 +8,6 @@ import useAuth from "./../../hooks/useAuth";
 
 const Navbar = ({ navItems }) => {
   const { user,signOutUser } = useAuth();
-  console.log(user);
   return (
     <div className="flex items-center justify-between py-4 px-4">
       <Link to="/">

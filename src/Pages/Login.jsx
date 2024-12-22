@@ -4,6 +4,7 @@ import Navbar from "../Components/Navbar/Navbar";
 import { loginNavItems } from "../data/NavItems";
 import useAuth from './../hooks/useAuth';
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const Login = () => {
   const {loginUser} = useAuth();
@@ -14,13 +15,17 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+    const user = {email,password}
     loginUser(email,password)
-    .then(user => {
-      if(user){
-        navigate(location?.state ? location.state : "/");
-        toast.success("User Login Sucessfully!");
-        return
-      }
+    .then(() => {
+        axios.post('http://localhost:5000/jwt', user,{withCredentials:true})
+        .then(res =>{
+          console.log(res.data)
+          if(res.data.sucess){
+            navigate(location?.state ? location.state : "/");
+            toast.success("User Login Sucessfully!");
+          }
+        })
     })
     .catch(error => {
       toast.error(error.message.split('/')[1].split('-').join(' '));

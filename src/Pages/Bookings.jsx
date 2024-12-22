@@ -4,15 +4,18 @@ import Navbar from "../Components/Navbar/Navbar";
 import banner from "../assets/images/banner/booking_banner.png";
 import { IoMdClose } from "react-icons/io";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const Bookings = () => {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
   const url = `http://localhost:5000/orders/?email=${user?.email}`;
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setOrders(data));
+    axios.get(url,{withCredentials:true})
+    .then(res =>setOrders(res.data))
+    // fetch(url)
+    //   .then((res) => res.json())
+    //   .then((data) => setOrders(data));
   }, [url,user]);
 
   const handleBookingDelete = id =>{
